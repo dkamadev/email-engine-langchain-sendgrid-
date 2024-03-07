@@ -34,7 +34,7 @@ def scrape_page(web_url):
     loader = AsyncChromiumLoader([web_url])
     html = loader.load()
     bs_transformer = BeautifulSoupTransformer()
-    documents = bs_transformer.transform_documents(html, tags_to_extract=["span"])
+    documents = bs_transformer.transform_documents(html, tags_to_extract=["span", "p"])
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     docs = text_splitter.split_documents(documents)
     return docs
